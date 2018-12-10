@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="pref_format_labels">
+        <item>
+            @string/mp3_format
+        </item>
+        <item>
+            @string/wav_format
+        </item>
+        <item>
+            @string/aac_format
+        </item>
+
+    </array>
+    <array name="pref_format_labels_values">
+        <item>
+            @string/mp3_format_value
+        </item>
+        <item>
+            @string/wav_format_value
+        </item>
+        <item>
+            @string/aac_format_value
+        </item>
+
+    </array>
+
+</resources>

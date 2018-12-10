@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<item
+    android:title="Del"
+    android:id="@+id/checkdel"
+    app:showAsAction="always"
+    android:orderInCategory="2">
+</item>
+    <item
+        android:title="Shr"
+        android:id="@+id/checkshr"
+        app:showAsAction="always"
+        android:orderInCategory="3">
+    </item>
+    <item
+        android:title="Ren"
+        android:id="@+id/checkRe"
+        app:showAsAction="always"
+        android:orderInCategory="1">
+    </item>
+</menu>
