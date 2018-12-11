@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="name_recordings_manually"
+        android:summaryOff="Auto"
+        android:summaryOn="Manual"
+        android:title="Name recordings manually" />
+    <ListPreference
+        android:defaultValue="@string/mp3_format"
+        android:key="@string/recording_format_value"
+        android:title="@string/recording_format"
+        android:entries="@array/pref_format_labels"
+        android:entryValues="@array/pref_format_labels_values" >
+
+
+
+    </ListPreference>
+
+
+
+</PreferenceScreen>
