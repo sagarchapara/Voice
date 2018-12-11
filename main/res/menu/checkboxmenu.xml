@@ -2,18 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 <item
-    android:title="Del"
+
+    android:icon="@drawable/delete"
     android:id="@+id/checkdel"
     app:showAsAction="always"
-    android:orderInCategory="2">
+    android:orderInCategory="2"
+    android:title="@string/delete">
 </item>
     <item
-        android:title="Shr"
+        android:icon="@drawable/share"
         android:id="@+id/checkshr"
         app:showAsAction="always"
-        android:orderInCategory="3">
+        android:orderInCategory="3"
+        android:title="@string/delete">
     </item>
     <item
+        android:icon="@drawable/renname"
+
         android:title="Ren"
         android:id="@+id/checkRe"
         app:showAsAction="always"

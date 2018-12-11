@@ -1,3 +1,4 @@
+
 package com.example.acer.voice;
 
 import android.Manifest;
@@ -6,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -14,7 +14,6 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.PersistableBundle;
 import android.preference.PreferenceManager;
-import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -31,6 +30,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -38,27 +38,21 @@ import android.widget.Toast;
 
 import com.example.acer.voice.recordeddatabase.recordedDatadatabase;
 import com.example.acer.voice.recordeddatabase.recordeddata;
-import com.example.acer.voice.recordeddatabase.recordedvideo;
 
 
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.nio.channels.FileChannel;
 import java.util.Arrays;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener{
-    Button button_import;
+    ImageButton button_import;
     private recordedDatadatabase mDb;
     PopupWindow popUp;
-    Button button_record;
-    Button button_recordings;
+    ImageButton button_record;
+    ImageButton button_recordings;
     private static final String LOG_TAG = "AudioRecordTest";
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 200;
     private static final int REQUEST_WRITE_EXTERNAL_PERMISSION =1;
@@ -108,9 +102,10 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         parentdir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"Voice");
         if(!parentdir.exists())
             parentdir.mkdirs();
-        button_import = (Button) findViewById(R.id.import_button);
-        button_record = (Button) findViewById(R.id.record_button);
-        button_recordings = (Button) findViewById(R.id.recordings_button);
+
+        button_import = (ImageButton) findViewById(R.id.import_button);
+        button_record = (ImageButton) findViewById(R.id.record_button);
+        button_recordings =(ImageButton) findViewById(R.id.recordings_button);
         mStartRecording = true;
         button_record.setOnClickListener(clicker);
         button_recordings.setOnClickListener(clicker);
@@ -119,8 +114,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         main_textview.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
             public void onSwipeTop() {
                 Toast.makeText(MainActivity.this, "top", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this,recordings_activity.class);
-                startActivity(intent);
+                dispatchTakeAudioIntent();
 
             }
 
@@ -281,57 +275,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
             Uri videoUri = intent.getData();
-            Log.e("c", videoUri.toString());
-            File file = new File(videoUri.toString());
-            String name = file.getName();
-            name = "Video " + name;
-            File videodir = new File(parentdir, name);
-            videodir.mkdirs();
-            File video = new File(videodir, name+".mp4");
-            try {
-                video.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                copyFile(file,video);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Date date = new Date(file.lastModified());
-            final recordedvideo rv = new recordedvideo(date, name);
-            AppExecutors.getInstance().getDiskIO().execute(new Runnable() {
-                @Override
-                public void run() {
-                    mDb.recordedvideodao().insertData(rv);
-                }
-            });
-//            mVideoView.setVideoURI(videoUri);}
-            if (requestCode == REQUEST_AUDIO_CAPTURE && requestCode == RESULT_OK) {
-                Uri audioUri = intent.getData();
-            }
+//            mVideoView.setVideoURI(videoUri);
         }
-    }
-    private  void copyFile(File sourceFile, File destFile) throws IOException {
-        if (!sourceFile.exists()) {
-            return;
+        if(requestCode== REQUEST_AUDIO_CAPTURE && requestCode == RESULT_OK){
+            Uri audioUri = intent.getData();
         }
-
-        FileChannel source = null;
-        FileChannel destination = null;
-        source = new FileInputStream(sourceFile).getChannel();
-        destination = new FileOutputStream(destFile).getChannel();
-        if (destination != null && source != null) {
-            destination.transferFrom(source, 0, source.size());
-        }
-        if (source != null) {
-            source.close();
-        }
-        if (destination != null) {
-            destination.close();
-        }
-
-
     }
 
 
@@ -343,9 +291,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 case R.id.record_button: {
                     onRecord(mStartRecording);
                     if (mStartRecording) {
-                        button_record.setText(getString(R.string.stop_recording));
+
+                        button_record.setImageResource(R.drawable.image1);
                     } else {
-                        button_record.setText(getString(R.string.start_recording));
+                        button_record.setImageResource(R.drawable.icon1);
+
                     }
                     mStartRecording = !mStartRecording;
                     return;
