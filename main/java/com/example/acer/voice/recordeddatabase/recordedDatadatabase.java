@@ -10,7 +10,7 @@ import android.arch.persistence.room.TypeConverter;
 import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 import android.support.annotation.NonNull;
-@Database(entities = {recordeddata.class},version = 1,exportSchema = false)
+@Database(entities = {recordeddata.class,recordedvideo.class},version = 1,exportSchema = false)
 @TypeConverters(DateConverter.class)
 public abstract class recordedDatadatabase extends RoomDatabase {
 
@@ -29,4 +29,5 @@ public abstract class recordedDatadatabase extends RoomDatabase {
         return sInstance;
     }
     public abstract recordeddataDao recordeddatadao();
+    public abstract recordedviedoDao recordedvideodao();
 }
