@@ -11,7 +11,9 @@
         android:id="@+id/main_text"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+
         android:layout_weight="12"
+
         app:layout_constraintBottom_toTopOf="@+id/import_button" />
 
     <LinearLayout
@@ -19,6 +21,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal"
+
         android:layout_marginBottom="8dp">
 
         <ImageButton
@@ -26,6 +29,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"
             android:tint="@color/colorPrimaryDark"
@@ -35,10 +39,12 @@
 
 
         <ImageButton
+
             android:id="@+id/record_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+
             android:scaleType="fitCenter"
             android:background="@android:color/transparent"
             android:tint="@color/colorPrimaryDark"
@@ -48,16 +54,17 @@
 
 
         <ImageButton
+
             android:id="@+id/recordings_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+
             android:scaleType="fitCenter"
             android:background="@android:color/transparent"
             android:tint="@color/colorPrimaryDark"
             android:src="@drawable/folder_icon2" />
             <!--android:layout_margin="16dp"-->
             <!--android:scaleType="fitCenter"-->
-
     </LinearLayout>
 </LinearLayout>

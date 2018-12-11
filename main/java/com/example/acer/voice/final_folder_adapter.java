@@ -29,7 +29,9 @@ public class final_folder_adapter extends RecyclerView.Adapter<final_folder_adap
     @Override
     public fileViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         Context context = viewGroup.getContext();
+
         int layoutidforfileitem = R.layout.final_file_list;
+
         LayoutInflater inflater = LayoutInflater.from(context);
         boolean shouldattachtoparentimmediately = false;
 

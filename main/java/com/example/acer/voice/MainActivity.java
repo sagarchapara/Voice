@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         parentdir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"Voice");
         if(!parentdir.exists())
             parentdir.mkdirs();
+
         button_import = (ImageButton) findViewById(R.id.import_button);
         button_record = (ImageButton) findViewById(R.id.record_button);
         button_recordings =(ImageButton) findViewById(R.id.recordings_button);
@@ -289,9 +290,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 case R.id.record_button: {
                     onRecord(mStartRecording);
                     if (mStartRecording) {
+
                         button_record.setImageResource(R.drawable.image1);
                     } else {
                         button_record.setImageResource(R.drawable.icon1);
+
                     }
                     mStartRecording = !mStartRecording;
                     return;
