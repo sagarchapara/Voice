@@ -1,4 +1,3 @@
-
 package com.example.acer.voice;
 
 import android.Manifest;
@@ -31,6 +30,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -38,6 +38,7 @@ import android.widget.Toast;
 
 import com.example.acer.voice.recordeddatabase.recordedDatadatabase;
 import com.example.acer.voice.recordeddatabase.recordeddata;
+import com.goodiebag.protractorview.ProtractorView;
 
 
 import org.apache.commons.io.FileUtils;
@@ -91,6 +92,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //This can then be added to its parent layout
+        ProtractorView  protractorView = (ProtractorView) findViewById( R.id.main_text);
         // Obtain the FirebaseAnalytics instance.
 
         mDb =recordedDatadatabase.getsInstance(getApplicationContext());
@@ -102,7 +105,6 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         parentdir = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),"Voice");
         if(!parentdir.exists())
             parentdir.mkdirs();
-
         button_import = (ImageButton) findViewById(R.id.import_button);
         button_record = (ImageButton) findViewById(R.id.record_button);
         button_recordings =(ImageButton) findViewById(R.id.recordings_button);
@@ -110,8 +112,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         button_record.setOnClickListener(clicker);
         button_recordings.setOnClickListener(clicker);
         button_import.setOnClickListener(clicker);
-        TextView main_textview = (TextView) findViewById(R.id.main_text);
-        main_textview.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
+     /*   main_textview.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
             public void onSwipeTop() {
                 Toast.makeText(MainActivity.this, "top", Toast.LENGTH_SHORT).show();
                 dispatchTakeAudioIntent();
@@ -122,10 +123,10 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
                 dispatchTakeVideoIntent();
 
-            }
+           }
 
-            public void onSwipeLeft() {
-                Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
+        public void onSwipeLeft() {
+        Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
                 Context context = MainActivity.this;
                 Intent start_files_activity = new Intent(context, files_activity.class);
                 Log.d(LOGTAG, "activity started");
@@ -136,6 +137,22 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 Toast.makeText(MainActivity.this, "bottom", Toast.LENGTH_SHORT).show();
             }
 
+        });  */
+        protractorView.setOnProtractorViewChangeListener(new ProtractorView.OnProtractorViewChangeListener() {
+            @Override
+            public void onProgressChanged(ProtractorView pv, int progress, boolean b) {
+                //protractorView's getters can be accessed using pv instance.
+            }
+
+            @Override
+            public void onStartTrackingTouch(ProtractorView pv) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(ProtractorView pv) {
+
+            }
         });
 
 
@@ -291,11 +308,9 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
                 case R.id.record_button: {
                     onRecord(mStartRecording);
                     if (mStartRecording) {
-
                         button_record.setImageResource(R.drawable.image1);
                     } else {
                         button_record.setImageResource(R.drawable.icon1);
-
                     }
                     mStartRecording = !mStartRecording;
                     return;
@@ -457,6 +472,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 //            return true;
 //        }
 //    }
+    
+
 
 }
 

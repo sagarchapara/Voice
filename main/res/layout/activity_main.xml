@@ -2,69 +2,73 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
+    <com.goodiebag.protractorview.ProtractorView
         android:id="@+id/main_text"
         android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginTop="50dp"
+        app:angle="15"
+        app:angleTextSize="10sp"
+        app:arcColor="#4a4a4a"
+        app:arcProgressColor="#FF0000"
+        app:arcWidth="4dp"
+        app:progressWidth="4dp"
+        app:roundEdges="true"
+        app:textColor="#000"
+        app:textProgressColor="#FF0000"
+        app:thumb="@drawable/thumb_normal"
+        app:tickColor="#4a4a4a"
+        app:tickIntervals="15"
+        app:tickLength="10dp"
+        app:tickOffset="18dp"
+        app:tickProgressColor="#abe6"
+        app:ticksBetweenLabel="three"
+        app:touchInside="true" />
+    <TextView
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-
-        android:layout_weight="12"
-
-        app:layout_constraintBottom_toTopOf="@+id/import_button" />
-
+        android:layout_weight="6"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal"
-
-        android:layout_marginBottom="8dp">
-
+        android:layout_marginBottom="0dp"
+        >
         <ImageButton
             android:id="@+id/import_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-
             android:background="@android:color/transparent"
             android:scaleType="fitCenter"
-            android:tint="@color/colorPrimaryDark"
-            android:src="@drawable/importbutton2" />
-            <!--android:layout_margin="12dp"-->
-            <!--android:scaleType="fitCenter"-->
-
+            android:src="@drawable/importbutton2"
+            android:tint="@color/colorPrimaryDark" />
 
         <ImageButton
-
             android:id="@+id/record_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-
-            android:scaleType="fitCenter"
             android:background="@android:color/transparent"
-            android:tint="@color/colorPrimaryDark"
-            android:src="@drawable/icon1"/>
-            <!--android:layout_margin="12dp"-->
-            <!--android:scaleType="fitCenter"-->
-
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon1"
+            android:tint="@color/colorPrimaryDark" />
 
         <ImageButton
-
             android:id="@+id/recordings_button"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-
-            android:scaleType="fitCenter"
             android:background="@android:color/transparent"
-            android:tint="@color/colorPrimaryDark"
-            android:src="@drawable/folder_icon2" />
-            <!--android:layout_margin="16dp"-->
-            <!--android:scaleType="fitCenter"-->
+            android:scaleType="fitCenter"
+            android:src="@drawable/folder_icon2"
+            android:tint="@color/colorPrimaryDark" />
     </LinearLayout>
 </LinearLayout>

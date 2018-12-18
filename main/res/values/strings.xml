@@ -1,10 +1,7 @@
-
 <resources>
     <string name="app_name">Voice</string>
     <string name="record">Record</string>
-
     <string name="delete">del</string>
-
     <string name="importing">Import</string>
     <string name="recordings">Recordings</string>
     <string name="stporecord">Stop Record</string>
